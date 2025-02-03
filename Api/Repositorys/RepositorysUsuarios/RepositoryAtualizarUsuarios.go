@@ -1,4 +1,4 @@
-package repositoryUsuarios
+package RepositoryUsuarios
 
 import (
 	"github.com/jackc/pgx/v5/pgconn"
@@ -13,11 +13,11 @@ func AtualizarUsuario(usuarioStruct modelUsuario.UsuarioStruct, idUsuario int) (
 	defer db.FechaDB(database)
 
 	// Tenta fazer a inserção, se houver dados repetidos, ele retorna com os campos repetidos
-	result := database.
+	resultado := database.
 		Model(&modelUsuario.UsuarioStruct{}).
 		Where("id = ?", idUsuario).
 		Updates(&usuarioStruct)
-	if err := result.Error; err != nil {
+	if err := resultado.Error; err != nil {
 		// Verifica se houve erro de violação de unicidade (unique_violation)
 		if pgErr, ok := err.(*pgconn.PgError); ok && pgErr.Code == "23505" {
 			camposRepetidos := "Campos repetidos: "
@@ -36,6 +36,5 @@ func AtualizarUsuario(usuarioStruct modelUsuario.UsuarioStruct, idUsuario int) (
 		return "", err
 	}
 
-	// Se esta tudo ok, retorna
 	return "", nil
 }

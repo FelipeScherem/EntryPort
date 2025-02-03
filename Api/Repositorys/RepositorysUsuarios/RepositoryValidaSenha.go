@@ -1,4 +1,4 @@
-package repositoryUsuarios
+package RepositoryUsuarios
 
 import (
 	db "projeto404/Api/Database"
