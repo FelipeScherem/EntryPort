@@ -10,7 +10,7 @@ import (
 func BuscarUsuarios(c *gin.Context) {
 	idDoUsuario := ControllerUteis.UtilIdUser(c)
 
-	usuario, err := repositoryUsuarios.BuscarUsuario(*idDoUsuario)
+	usuario, err := RepositoryUsuarios.BuscarUsuario(*idDoUsuario)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"mensagem": "Houve um erro ao buscar o usuario", "error": err})
 		return
